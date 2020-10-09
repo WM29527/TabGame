@@ -2,99 +2,125 @@
 <html>
 <head>
 <style>
-body, html {
-  height: 100%;
-  margin: 0;
-}
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
 
-.bg {
-  /* The image used */
-  /*background-image: url("Background.jpg");
+  .bg {
+    /* The image used */
+    /*background-image: url("Background.jpg");
 
-  /* Full height */
-  height: 100%;
+    /* Full height */
+    height: 100%;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #f39c12
-}
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.container {
-  position: relative;
-  text-align: center;
-  color: white;
-}
-#a {
-  position:
-  left: 50%;
-  top: 50%;
-  text-align: center
-  margin-top: -65px;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f39c12
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  #a {
+    position:
+    left: 50%;
+    top: 50%;
+    text-align: center
+    margin-top: -65px;
 
 
-}
+  }
+
+
 </style>
 </head>
 <body>
 
 <div class="bg container">
+  <div id="a"></div>
 
-<div id="a"></div>
+      <p style="  visibility: hidden;" id="result"></p>
 
-    <p style="  visibility: hidden;" id="result"></p>
+       <h1>hello</h1>
+       <div id="box">;
+       <input type="button" onclick="fade('box', 1, 0.3, 5000, new Date().getTime())" value="Fade"/>;
+       </div>
+
+
 </div>
-
 <script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 
 </script>
 <script>
-function timepadding(x5) {
-  if (typeof x5 !== "string") {
-    x5 = x5.toString()
+  function timepadding(x5) {
+    if (typeof x5 !== "string") {
+      x5 = x5.toString()
+    }
+    var x6 = 0;
+    var x7 = 0;
+    if (x5 % 60 === 0) {
+      return x5 + ":00"
+    }
+    else {
+      x6 = x5 % 60;
+      return x6.toString()
+    }
   }
-  var x6 = 0;
-  var x7 = 0;
-  if (x5 % 60 === 0) {
-    return x5 + ":00"
+  function gettimezone() {
+    var d = new Date();
+    var z = document.getElementById("result");
+    var utcsinceepoch = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+    var y1 = d.getTime()
+    z.innerHTML= (utcsinceepoch - d.getTime())/3600000;
   }
-  else {
-    x6 = x5 % 60;
-    return x6.toString()
+  gettimezone();
+  function utcoffset(time, offset) {
+    return time + offset;
   }
-}
-function gettimezone() {
-  var d = new Date();
-  var z = document.getElementById("result");
-  var utcsinceepoch = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
-  var y1 = d.getTime()
-  z.innerHTML= (utcsinceepoch - d.getTime())/3600000;
-}
-gettimezone();
-function utcoffset(time, offset) {
-  return time + offset;
-}
-function displayTime() {
-  var d = new Date();
-  var y = document.getElementById("a");
-  var h = (d.getHours()).toString();
-  var m = (d.getMinutes()).toString();
-  var s = (d.getSeconds()).toString();
-  var h2 = ("0" + h).slice(-2);
-  var m2 = ("0" + m).slice(-2);
+  function displayTime() {
+    var d = new Date();
+    var y = document.getElementById("a");
+    var h = (d.getHours()).toString();
+    var m = (d.getMinutes()).toString();
+    var s = (d.getSeconds()).toString();
+    var h2 = ("0" + h).slice(-2);
+    var m2 = ("0" + m).slice(-2);
 
-  y.style.fontSize = "100px";
-  y.style.fontFamily = "Times New Roman, Times, serif";
-  y.innerHTML= h2 + ":" + m2;
-}
-setInterval(displayTime, 1000);
-
+    y.style.fontSize = "100px";
+    y.style.fontFamily = "Times New Roman, Times, serif";
+    y.innerHTML= h2 + ":" + m2;
+  }
+  setInterval(displayTime, 1000);
+  function fade(eid, initOp, finalOp, TimeToFade, time){
+      if (initOp==0)
+      {
+          document.getElementById(eid).style.visibility="visible";
+      }
+      var curTick = new Date().getTime();
+      var elapsedTicks = curTick - time;
+      var newOp = initOp+(finalOp-initOp)*elapsedTicks/TimeToFade;
+      if (Math.abs(newOp-initOp)&gt;Math.abs(finalOp-initOp))
+      {
+          document.getElementById(eid).style.opacity=finalOp;
+          if (finalOp==0)
+          {
+              document.getElementById(eid).style.visibility="hidden"
+          }
+          return;
+      }
+      document.getElementById(eid).style.opacity=newOp;
+      setTimeout("fade( '" + eid + "'," + initOp + "," + finalOp + "," + TimeToFade + "," + time + ")", TimeToFade/100);
+  }
 
 </script>
 </body>
