@@ -52,9 +52,12 @@
       <p style="  visibility: hidden;" id="result"></p>
 
        <h1>hello</h1>
-       <div id="box">;
-       <input type="button" onclick="fade('box', 1, 0.3, 5000, new Date().getTime())" value="Fade"/>;
-       <p id="demo"></p>
+       <div id="box">
+
+           <input type="button" onclick="Button(2); window.location.reload();" value="Cost(2)"/>
+
+
+       <p id="CoinValue"></p>
        </div>
 
 
@@ -126,19 +129,32 @@
 
 </script>
 <script type="text/javascript">
-//var CurCoin = localStorage.getItem("Coin")
-  if (localStorage.getItem("Coin") == null) {
-    localStorage.setItem("Coin", 0);
+  //var CurCoin = localStorage.getItem("Coin")
+    if (localStorage.getItem("Coin") == null) {
+      localStorage.setItem("Coin", 0);
+      document.getElementById("CoinValue").innerHTML = CurCoin
 
-  }else {
-    var CurCoin = parseInt(localStorage.getItem("Coin")) + 1 ;
-    localStorage.setItem("Coin", CurCoin);
-    Coin = localStorage.getItem("Coin")
-    localStorage.getItem("Coin");
-    console.log(CurCoin);
-    document.getElementById("demo").innerHTML = CurCoin
-  }
+    }else {
+      var CurCoin = parseInt(localStorage.getItem("Coin")) + 1 ;
+      localStorage.setItem("Coin", CurCoin);
+      Coin = localStorage.getItem("Coin")
+      localStorage.getItem("Coin");
+      console.log(CurCoin);
+      document.getElementById("CoinValue").innerHTML = CurCoin
+    }
+    function Button(Cost) {
 
+        if (CurCoin >= Cost) {
+
+
+            CurCoin -= Cost;
+            localStorage.setItem("Coin", CurCoin);
+            return CurCoin;
+            document.getElementById("CoinValue").innerHTML = CurCoin
+}
+
+        }
 </script>
+
 </body>
 </html>
