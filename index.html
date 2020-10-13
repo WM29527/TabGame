@@ -54,15 +54,17 @@
        <h1>hello</h1>
        <div id="box">;
        <input type="button" onclick="fade('box', 1, 0.3, 5000, new Date().getTime())" value="Fade"/>;
+       <p id="demo"></p>
        </div>
 
 
 </div>
-<script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 
-</script>
+<!--<script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+
+</script>-->
 <script>
-  function timepadding(x5) {
+  /*function timepadding(x5) {
     if (typeof x5 !== "string") {
       x5 = x5.toString()
     }
@@ -120,6 +122,21 @@
       }
       document.getElementById(eid).style.opacity=newOp;
       setTimeout("fade( '" + eid + "'," + initOp + "," + finalOp + "," + TimeToFade + "," + time + ")", TimeToFade/100);
+  }*/
+
+</script>
+<script type="text/javascript">
+//var CurCoin = localStorage.getItem("Coin")
+  if (localStorage.getItem("Coin") == null) {
+    localStorage.setItem("Coin", 0);
+
+  }else {
+    var CurCoin = parseInt(localStorage.getItem("Coin")) + 1 ;
+    localStorage.setItem("Coin", CurCoin);
+    Coin = localStorage.getItem("Coin")
+    localStorage.getItem("Coin");
+    console.log(CurCoin);
+    document.getElementById("demo").innerHTML = CurCoin
   }
 
 </script>
