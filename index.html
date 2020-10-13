@@ -175,14 +175,30 @@ border-radius: 50px;
 }, 2000); // wait to run after 5 seconds
 </script>
 <script type="text/javascript">
-function createCookie(key, value) {
-                    let cookie = escape(key) + "=" + escape(value) + ";";
-                    document.cookie = cookie;
-                    console.log(cookie);
-                    console.log("Creating new cookie with key: " + key + " value: " + value);
-                }
-                createCookie("sport", "basketball");
-                createCookie("icecream", "vanilla");
+function createCookie(key, value, date) {
+        let expiration = new Date(date).toUTCString();
+        let cookie = escape(key) + "=" + escape(value) + ";expires=" + expiration + ";";
+        document.cookie = cookie;
+        console.log(cookie);
+        console.log("Creating new cookie with key: " + key + " value: " + value + " expiration: " + expiration);
+    }
+    createCookie("sport", "basketball", Date.UTC(2017, 8, 1));
+    createCookie("icecream", "vanilla", Date.UTC(2017, 8, 1));
+    createCookie("coin", 0, Date.UTC(9999, 8, 1))
+    function readCookie(name) {
+    	let key = name + "=";
+    	let cookies = document.cookie.split(';');
+    	for (let i = 0; i < cookies.length; i++) {
+    		let cookie = cookies[i];
+    		while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+    		if (cookie.indexOf(key) === 0) {
+                return cookie.substring(key.length, cookie.length);
+            }
+    	}
+    	return null;
+    }
             </script>
 </body>
 </html>
