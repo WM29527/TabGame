@@ -129,6 +129,225 @@
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons*/
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.btn-group button {
+  background-color: #4CAF50; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
 </style>
 
 </head>
@@ -136,7 +355,7 @@
 
 <div class="bg container">
   <div class="Casino">
-    <img  src="Casino.png" onclick="Button(20); window.location.reload();" width="70" height="70" />
+    <img  src="Casino.png" onclick="openForm()" width="70" height="70" />
   </div>
 
 
@@ -157,23 +376,80 @@
 
 
        </div>
-       <button class="open-button" onclick="openForm()">Open Form</button>
+
 
        <div class="form-popup" id="myForm">
          <form action="/action_page.php" class="form-container">
-           <h1>Login</h1>
+          <div class="tooltip"> <img  src="CoinFlip.png" alt="" width="50px" height="50px" onclick="document.getElementById('id01').style.display='block'">
+            <span class="tooltiptext">Coin Toss allows you to double your money in an instant</span>
+          </div>
 
-           <label for="email"><b>Email</b></label>
-           <input type="text" placeholder="Enter Email" name="email" required>
 
-           <label for="psw"><b>Password</b></label>
-           <input type="password" placeholder="Enter Password" name="psw" required>
 
-           <button type="submit" class="btn">Login</button>
+
+
+
            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
          </form>
        </div>
 
+
+
+
+
+       <div id="id01" class="modal">
+
+         <form class="modal-content animate" action="/action_page.php" method="post">
+           <div class="imgcontainer">
+             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+             <img src="img_avatar2.png" alt="Coin Toss" class="avatar">
+           </div>
+
+           <div class="container">
+
+            <div class="btn-group">
+             <button width:50%>Heads</button>
+             <button width:50%>Tails</button>
+
+             </div>
+             <h1>Round Range Slider</h1>
+
+<div class="slidecontainer">
+  <input type="range" min="1" max="357" value="10" class="slider" id="myRange" id="CoinMax">
+  <p style="color: Black">Value: <span id="Bet"></span></p>
+</div>
+
+
+           </div>
+
+           <div class="container" style="background-color:#f1f1f1">
+             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+
+           </div>
+         </form>
+       </div>
+
+       <script>
+
+       var slider = document.getElementById("myRange");
+
+       var output = document.getElementById("Bet");
+       output.innerHTML = slider.value;
+
+       slider.oninput = function() {
+         output.innerHTML = this.value;
+       }
+
+       // Get the modal
+       var modal = document.getElementById('id01');
+
+       // When the user clicks anywhere outside of the modal, close it
+       window.onclick = function(event) {
+           if (event.target == modal) {
+               modal.style.display = "none";
+           }
+       }
+       </script>
        <script>
        function openForm() {
          document.getElementById("myForm").style.display = "block";
@@ -182,74 +458,10 @@
        function closeForm() {
          document.getElementById("myForm").style.display = "none";
        }
-       </script>
 
-<!--<script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 
-</script>-->
-<script>
-  /*function timepadding(x5) {
-    if (typeof x5 !== "string") {
-      x5 = x5.toString()
-    }
-    var x6 = 0;
-    var x7 = 0;
-    if (x5 % 60 === 0) {
-      return x5 + ":00"
-    }
-    else {
-      x6 = x5 % 60;
-      return x6.toString()
-    }
-  }
-  function gettimezone() {
-    var d = new Date();
-    var z = document.getElementById("result");
-    var utcsinceepoch = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
-    var y1 = d.getTime()
-    z.innerHTML= (utcsinceepoch - d.getTime())/3600000;
-  }
-  gettimezone();
-  function utcoffset(time, offset) {
-    return time + offset;
-  }
-  function displayTime() {
-    var d = new Date();
-    var y = document.getElementById("a");
-    var h = (d.getHours()).toString();
-    var m = (d.getMinutes()).toString();
-    var s = (d.getSeconds()).toString();
-    var h2 = ("0" + h).slice(-2);
-    var m2 = ("0" + m).slice(-2);
+//<script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 
-    y.style.fontSize = "100px";
-    y.style.fontFamily = "Times New Roman, Times, serif";
-    y.innerHTML= h2 + ":" + m2;
-  }
-  setInterval(displayTime, 1000);
-  function fade(eid, initOp, finalOp, TimeToFade, time){
-      if (initOp==0)
-      {
-          document.getElementById(eid).style.visibility="visible";
-      }
-      var curTick = new Date().getTime();
-      var elapsedTicks = curTick - time;
-      var newOp = initOp+(finalOp-initOp)*elapsedTicks/TimeToFade;
-      if (Math.abs(newOp-initOp)&gt;Math.abs(finalOp-initOp))
-      {
-          document.getElementById(eid).style.opacity=finalOp;
-          if (finalOp==0)
-          {
-              document.getElementById(eid).style.visibility="hidden"
-          }
-          return;
-      }
-      document.getElementById(eid).style.opacity=newOp;
-      setTimeout("fade( '" + eid + "'," + initOp + "," + finalOp + "," + TimeToFade + "," + time + ")", TimeToFade/100);
-  }*/
-
-</script>
-<script type="text/javascript">
 move()
   //var CurCoin = localStorage.getItem("Coin")
   if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null) {
@@ -264,7 +476,8 @@ move()
   localStorage.setItem("MaxXp", (parseInt(localStorage.getItem("Level")) * 2) + 15)
     if (localStorage.getItem("Coin") == null) {
       localStorage.setItem("Coin", 0);
-      document.getElementById("CoinValue").innerHTML = CurCoin
+      document.getElementById("CoinValue").innerHTML = CurCoin;
+      document.getElementById("CoinValue").input.max = CoinMax;
 
     }else {
       var CurCoin = parseInt(localStorage.getItem("Coin")) + 1 ;
