@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html>
+<head>
 <style>
   body, html {
     height: 100%;
@@ -8,7 +10,6 @@
   .bg {
     /* The image used */
     /*background-image: url("Background.jpg");
-
     /* Full height */
     height: 100%;
     width: auto;
@@ -353,6 +354,7 @@ span.psw {
 
 <div class="bg container">
   <div class="Casino">
+    <img  src="Casino.png" onclick="openForm()" width="70" height="70" />
   </div>
 
 
@@ -360,6 +362,8 @@ span.psw {
 
        <h1>hello</h1>
 
+       <p id="CoinValue"></p>
+       <p id="CurXpValue"></p>
 
 
 
@@ -374,6 +378,8 @@ span.psw {
 
 
        <div class="form-popup" id="myForm">
+         <form action="/action_page.php" class="form-container">
+          <div class="tooltip"> <img  src="CoinFlip.png" alt="" width="50px" height="50px" onclick="document.getElementById('id01').style.display='block'">
             <span class="tooltiptext">Coin Toss allows you to double your money in an instant</span>
           </div>
 
@@ -392,23 +398,31 @@ span.psw {
 
        <div id="id01" class="modal">
 
+         <form class="modal-content animate" action="/action_page.php" method="post">
            <div class="imgcontainer">
+             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+             <img src="img_avatar2.png" alt="Coin Toss" class="avatar">
            </div>
 
            <div class="container">
 
             <div class="btn-group">
+             <button width:50%>Heads</button>
+             <button width:50%>Tails</button>
 
              </div>
              <h1>Round Range Slider</h1>
 
 <div class="slidecontainer">
+  <input type="range" min="1" max="357" value="10" class="slider" id="myRange" id="CoinMax">
+  <p style="color: Black">Value: <span id="Bet"></span></p>
 </div>
 
 
            </div>
 
            <div class="container" style="background-color:#f1f1f1">
+             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 
            </div>
          </form>
@@ -515,3 +529,5 @@ move()
           }
         }
 </script>
+</body>
+</html>
