@@ -131,14 +131,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
+
 
 /* Set a style for all buttons*/
 button {
@@ -334,7 +327,7 @@ span.psw {
 
 /* Clear floats (clearfix hack) */
 .btn-group:after {
-  content: "";
+
   clear: both;
   display: table;
 }
@@ -346,6 +339,77 @@ span.psw {
 /* Add a background color on hover */
 .btn-group button:hover {
   background-color: #3e8e41;
+}
+h2 {
+  margin: .25rem;
+}
+
+div.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  padding: 1rem;
+  background-color: skyblue;
+}
+
+#coin {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  margin: 2rem 0rem;
+  transform-style: preserve-3d;
+
+}
+
+#coin div {
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  background-size: contain;
+  position: absolute;
+}
+
+.heads {
+    background-image: url("https://en.numista.com/catalogue/photos/inde/2311-original.jpg");
+}
+
+.animate-heads {
+  animation: flipHeads 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flipHeads {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(1800deg);
+  }
+}
+
+.tails {
+    background-image: url("https://en.numista.com/catalogue/photos/inde/3165-original.jpg");
+  transform: rotateY(-180deg);
+}
+
+.animate-tails {
+  animation: flipTails 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flipTails {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(1620deg);
+  }
 }
 </style>
 
@@ -398,23 +462,32 @@ span.psw {
 
        <div id="id01" class="modal">
 
-         <form class="modal-content animate" action="/action_page.php" method="post">
+         <div class="modal-content animate"  method="post">
            <div class="imgcontainer">
-             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
              <img src="img_avatar2.png" alt="Coin Toss" class="avatar">
+             <div class='container'>
+  <div id="coin" class=''>
+    <div id="heads" class="heads"></div>
+    <div id="tails" class="tails"></div>
+  </div>
+
+  <p style="color:Black">Heads: <span id="headsCount">0</span> Tails: <span  id="tailsCount">0</span></p>
+
+</div>
            </div>
 
            <div class="container">
 
             <div class="btn-group">
-             <button width:50%>Heads</button>
-             <button width:50%>Tails</button>
+             <button onclick="flipCoin();Heads();" width:50%>Heads</button>
+             <button onclick="flipCoin();Tails();" width:50%>Tails</button>
 
              </div>
              <h1>Round Range Slider</h1>
 
 <div class="slidecontainer">
-  <input type="range" min="1" max="357" value="10" class="slider" id="myRange" id="CoinMax">
+  <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
   <p style="color: Black">Value: <span id="Bet"></span></p>
 </div>
 
@@ -425,20 +498,79 @@ span.psw {
              <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 
            </div>
-         </form>
+         </div>
        </div>
 
        <script>
+       const coin = document.querySelector('#coin');
+       const button = document.querySelector('#flip');
+       const status = document.querySelector('#status');
+       const heads = document.querySelector('#headsCount');
+       const tails = document.querySelector('#tailsCount');
+
+       let headsCount = 0;
+       let tailsCount = 0;
+
+
+       function deferFn(callback, ms) {
+         setTimeout(callback, ms);
+       }
+
+       function processResult(result) {
+          if (result === 'heads') {
+             headsCount++;
+             heads.innerText = headsCount;
+           } else {
+             tailsCount++;
+             tails.innerText = tailsCount;
+           }
+
+       }
+       const result = null;
+       console.log(result);
+       function flipCoin() {
+         coin.setAttribute('class', '');
+         var random = Math.random();
+
+         const result = random < 0.5 ? 'heads' : 'tails';
+         console.log("Flip: " + result);
+        deferFn(function() {
+          coin.setAttribute('class', 'animate-' + result);
+          deferFn(processResult.bind(null, result), 2900);
+        }, 100);
+       }
+       //button.addEventListener('click', flipCoin);
 
        var slider = document.getElementById("myRange");
 
        var output = document.getElementById("Bet");
-       output.innerHTML = slider.value;
 
+       output.innerHTML = slider.value;
+       var x = document.getElementById("myRange").max = localStorage.getItem("Coin");
        slider.oninput = function() {
          output.innerHTML = this.value;
-       }
 
+       }
+       console.log(document.getElementById("myRange").value);
+       function Heads() {
+         localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
+         var Random = Math.floor(Math.random() * 10) + 1;
+
+         if (result == 'heads') {
+           localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
+           //location.reload()
+           console.log("Heads");
+         }
+       }
+       function Tails() {
+         localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
+         var Random = Math.floor(Math.random() * 10) + 1;
+         if (result == 'tails') {
+           localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
+           //location.reload()
+           console.log("Tails");
+         }
+       }
        // Get the modal
        var modal = document.getElementById('id01');
 
@@ -463,10 +595,11 @@ span.psw {
 
 move()
   //var CurCoin = localStorage.getItem("Coin")
-  if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null) {
+  if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null || localStorage.getItem("Coin") == NaN) {
     localStorage.setItem("Level", 0)
     localStorage.setItem("CurXp", 0)
     localStorage.setItem("MaxXp", parseInt(localStorage.getItem("Level")) + 15)
+    localStorage.setItem("Coin", 0)
 
   }
   console.log("Level: " +localStorage.getItem("Level"));
