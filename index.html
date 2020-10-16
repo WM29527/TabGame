@@ -472,7 +472,7 @@ button {
     <div id="tails" class="tails"></div>
   </div>
 
-  <p style="color:Black">Heads: <span id="headsCount">0</span> Tails: <span  id="tailsCount">0</span></p>
+
 
 </div>
            </div>
@@ -495,13 +495,72 @@ button {
            </div>
 
            <div class="container" style="background-color:#f1f1f1">
-             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+             <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Close</button>
 
            </div>
          </div>
+
        </div>
 
+
+       <div id="id02" class="modal">
+
+         <form class="modal-content animate" action="/action_page.php" method="post">
+           <div class="imgcontainer">
+
+
+           </div>
+
+           <div class="container">
+             <h1 style="text-align: center; color: Black;">Profits</h1>
+             <h4 style="text-align: center; color: Black;">+ $<span id="demo"></span></h4>
+
+
+             <button type="button" onclick="document.getElementById('id02').style.display='none'; location.reload()" class="cancelbtn">Close</button>
+
+           </div>
+
+
+         </form>
+       </div>
+       <div id="id03" class="modal">
+
+         <form class="modal-content animate" action="/action_page.php" method="post">
+           <div class="imgcontainer">
+
+
+           </div>
+
+           <div class="container">
+             <h1 style="text-align: center; color: Black;">Losses</h1>
+             <h4 style="text-align: center; color: Black;">- $<span id="demo2"></span></h4>
+             
+
+             <button type="button" onclick="document.getElementById('id03').style.display='none'; location.reload()" class="cancelbtn">Close</button>
+
+           </div>
+
+
+         </form>
+       </div>
        <script>
+
+       var modal2 = document.getElementById('id02');
+       var modal2 = document.getElementById('id03');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal2) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
+window.onclick = function(event) {
+    if (event.target == modal3) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
        const coin = document.querySelector('#coin');
        const button = document.querySelector('#flip');
        const status = document.querySelector('#status');
@@ -557,10 +616,17 @@ button {
          localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
          var Random = Math.floor(Math.random() * 10) + 1;
          console.log("Random: " + random);
+
+
          if (random < 0.5) {
            localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
-           //location.reload()
            console.log("Heads");
+           document.getElementById("demo").innerHTML = slider.value;
+           document.getElementById('id02').style.display='block'
+         }
+         else {
+           document.getElementById("demo2").innerHTML = slider.value;
+           document.getElementById('id03').style.display='block'
          }
        }
        function Tails() {
@@ -570,6 +636,12 @@ button {
            localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
            //location.reload()
            console.log("Tails");
+           document.getElementById("demo").innerHTML = slider.value;
+           document.getElementById('id02').style.display='block'
+         }
+         else {
+           document.getElementById("demo2").innerHTML = slider.value;
+           document.getElementById('id03').style.display='block'
          }
        }
        // Get the modal
