@@ -464,8 +464,8 @@ button {
 
          <div class="modal-content animate"  method="post">
            <div class="imgcontainer">
-             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
-             <img src="img_avatar2.png" alt="Coin Toss" class="avatar">
+             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
              <div class='container'>
   <div id="coin" class=''>
     <div id="heads" class="heads"></div>
@@ -534,7 +534,7 @@ button {
            <div class="container">
              <h1 style="text-align: center; color: Black;">Losses</h1>
              <h4 style="text-align: center; color: Black;">- $<span id="demo2"></span></h4>
-             
+
 
              <button type="button" onclick="document.getElementById('id03').style.display='none'; location.reload()" class="cancelbtn">Close</button>
 
@@ -617,32 +617,38 @@ window.onclick = function(event) {
          var Random = Math.floor(Math.random() * 10) + 1;
          console.log("Random: " + random);
 
+         setTimeout(function(){
+           console.log("Hello");
+           if (random < 0.5) {
+             localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
+             console.log("Heads");
+             document.getElementById("demo").innerHTML = slider.value;
+             document.getElementById('id02').style.display='block';
+           }
+           else {
+             document.getElementById("demo2").innerHTML = slider.value;
+             document.getElementById('id03').style.display='block';
+           }
+         }, 3000);
 
-         if (random < 0.5) {
-           localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
-           console.log("Heads");
-           document.getElementById("demo").innerHTML = slider.value;
-           document.getElementById('id02').style.display='block'
-         }
-         else {
-           document.getElementById("demo2").innerHTML = slider.value;
-           document.getElementById('id03').style.display='block'
-         }
        }
        function Tails() {
          localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
          var Random = Math.floor(Math.random() * 10) + 1;
-         if (random > 0.5) {
-           localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
-           //location.reload()
-           console.log("Tails");
-           document.getElementById("demo").innerHTML = slider.value;
-           document.getElementById('id02').style.display='block'
-         }
-         else {
-           document.getElementById("demo2").innerHTML = slider.value;
-           document.getElementById('id03').style.display='block'
-         }
+         setTimeout(function(){
+           if (random > 0.5) {
+             localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
+             //location.reload()
+             console.log("Tails");
+             document.getElementById("demo").innerHTML = slider.value;
+             document.getElementById('id02').style.display='block'
+           }
+           else {
+             document.getElementById("demo2").innerHTML = slider.value;
+             document.getElementById('id03').style.display='block'
+           }
+         }, 3000);
+
        }
        // Get the modal
        var modal = document.getElementById('id01');
