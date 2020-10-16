@@ -484,7 +484,7 @@ button {
              <button onclick="flipCoin();Tails();" width:50%>Tails</button>
 
              </div>
-             <h1>Round Range Slider</h1>
+
 
 <div class="slidecontainer">
   <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
@@ -579,6 +579,7 @@ button {
        window.onclick = function(event) {
            if (event.target == modal) {
                modal.style.display = "none";
+               location.reload()
            }
        }
        </script>
