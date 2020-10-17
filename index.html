@@ -50,13 +50,14 @@
 
   }
   #myProgress {
-    width: 100%;
+    width: 70%;
     background-color: #ddd;
+    height: auto;
   }
 
   #myBar {
-    width: 30%;
-    height: 30px;
+    width: 0%;
+    height: 40px;
     background-color: #4CAF50;
     text-align: center;
     line-height: 30px;
@@ -411,6 +412,12 @@ button {
     transform: rotateY(1620deg);
   }
 }
+div.absolute {
+  position: absolute;
+  width: 50%;
+  bottom: 10px;
+
+}
 </style>
 
 </head>
@@ -424,20 +431,25 @@ button {
 
 
 
-       <h1>hello</h1>
+       <h1>TabGame</h1>
 
        <p id="CoinValue"></p>
+
        <p id="CurXpValue"></p>
 
 
 
-  <div id="myProgress">
-  <div id="myBar">0%</div>
 
 
-  </div>
+       <div id="myProgress" class="absolute">
+
+       <div id="myBar">
+         <p id="p1"></p>
+         <p id="Level"></p>
+       </div>
 
 
+       </div>
        </div>
 
 
@@ -454,6 +466,7 @@ button {
 
            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
          </form>
+
        </div>
 
 
@@ -523,6 +536,7 @@ button {
 
          </form>
        </div>
+
        <div id="id03" class="modal">
 
          <form class="modal-content animate" action="/action_page.php" method="post">
@@ -543,12 +557,39 @@ button {
 
          </form>
        </div>
+       <div id="id04" class="modal">
+
+         <form class="modal-content animate" action="/action_page.php" method="post">
+           <div class="imgcontainer">
+
+
+           </div>
+
+           <div class="container">
+             <h1 style="text-align: center; color: Black;">Level Up</h1>
+             <h4 style="text-align: center; color: Black;"></h4>
+
+
+             <button type="button" onclick="document.getElementById('id04').style.display='none'; location.reload()" class="cancelbtn">Close</button>
+
+           </div>
+
+
+         </form>
+       </div>
        <script>
 
        var modal2 = document.getElementById('id02');
        var modal2 = document.getElementById('id03');
+       var modal3 = document.getElementById('id04');
 
 // When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal3) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
 window.onclick = function(event) {
     if (event.target == modal2) {
         modal.style.display = "none";
@@ -685,6 +726,7 @@ move()
   console.log("Level: " +localStorage.getItem("Level"));
   console.log("CurXp: " + localStorage.getItem("CurXp"));
   console.log("MaxXp: " + localStorage.getItem("MaxXp"));
+  document.getElementById("Level").innerHTML = localStorage.getItem("Level");
   localStorage.setItem("MaxXp", (parseInt(localStorage.getItem("Level")) * 2) + 15)
     if (localStorage.getItem("Coin") == null) {
       localStorage.setItem("Coin", 0);
@@ -703,12 +745,18 @@ move()
       localStorage.setItem("CurXp", CurXp);
       localStorage.getItem("Coin");
       console.log(CurXp);
-      document.getElementById("CurXpValue").style.width = CurXp + "%"
+      MaxXp = localStorage.getItem("MaxXp")
+      var XpBar = CurXp/MaxXp;
+      console.log("Bar of xp: " + XpBar);
+      document.getElementById("myBar").style.width = XpBar * 100 + "%"
+      document.getElementById("p1").innerHTML = Math.floor(XpBar * 100) + "%";
+
     }
     if (localStorage.getItem("CurXp") == localStorage.getItem("MaxXp")) {
       console.log("Level Up");
       localStorage.setItem("Level",parseInt(localStorage.getItem("Level")) + 1)
       localStorage.setItem("CurXp",parseInt(localStorage.getItem("CurXp")) - parseInt(localStorage.getItem("MaxXp")))
+      document.getElementById('id04').style.display='block';
     }
     function Button(Cost) {
 
