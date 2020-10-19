@@ -741,6 +741,9 @@ move()
             }
           }
         }
+        if (localStorage.getItem("Coin") < 0) {
+          localStorage.setItem("Coin", 0)
+        }
 </script>
 </body>
 </html>
