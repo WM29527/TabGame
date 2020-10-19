@@ -642,7 +642,7 @@ window.onclick = function(event) {
 
          random = Math.random();
 
-         const result = random < 0.5 ? 'heads' : 'tails';
+         const result = random <= 0.5 ? 'heads' : 'tails';
          console.log("Flip: " + result);
         deferFn(function() {
           coin.setAttribute('class', 'animate-' + result);
