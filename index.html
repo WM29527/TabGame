@@ -628,8 +628,15 @@ window.onclick = function(event) {
        }
        let random = {};
 
+
        function flipCoin() {
          coin.setAttribute('class', '');
+         var x = document.getElementById("tails");
+         if (x.style.display === "none") {
+           x.style.display = "block";
+         } else {
+           x.style.display = "none";
+         }
          random = Math.random();
 
          const result = random < 0.5 ? 'heads' : 'tails';
