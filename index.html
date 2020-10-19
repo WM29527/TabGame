@@ -492,15 +492,17 @@ div.absolute {
 
            <div class="container">
 
-            <div class="btn-group">
+            <div class="btn-group" id='FlipChoice'>
              <button onclick="flipCoin();Heads();" width:50%>Heads</button>
              <button onclick="flipCoin();Tails();" width:50%>Tails</button>
 
              </div>
 
 
-<div class="slidecontainer">
-  <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
+<div class="slidecontainer" >
+  <div id='slider'>
+    <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
+  </div>
   <p style="color: Black">Value: <span id="Bet"></span></p>
 </div>
 
@@ -558,32 +560,35 @@ div.absolute {
          </form>
        </div>
        <div id="id04" class="modal">
-
          <form class="modal-content animate" action="/action_page.php" method="post">
            <div class="imgcontainer">
-
-
            </div>
-
            <div class="container">
              <h1 style="text-align: center; color: Black;">Level Up</h1>
              <h4 style="text-align: center; color: Black;"></h4>
-
-
              <button type="button" onclick="document.getElementById('id04').style.display='none'; location.reload()" class="cancelbtn">Close</button>
-
            </div>
-
-
          </form>
        </div>
        <script>
-
+function PopupBox() {
+var popup = document.getElementById('CustomId');
+var header = '';
+var text = '';
+var PopupBody = document.createElement("DIV");
+PopupBody.innerHTML = document.createElement("DIV");
+}
        var modal2 = document.getElementById('id02');
        var modal2 = document.getElementById('id03');
        var modal3 = document.getElementById('id04');
 
 // When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == CustomId) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
 window.onclick = function(event) {
     if (event.target == modal3) {
         modal.style.display = "none";
@@ -627,16 +632,14 @@ window.onclick = function(event) {
 
        }
        let random = {};
+       if (localStorage.getItem('Coin') > 999999) {
+         localStorage.setItem('Coin', 0)
 
+       }
 
        function flipCoin() {
          coin.setAttribute('class', '');
-         var x = document.getElementById("tails");
-         if (x.style.display === "none") {
-           x.style.display = "block";
-         } else {
-           x.style.display = "none";
-         }
+
          random = Math.random();
 
          const result = random < 0.5 ? 'heads' : 'tails';
@@ -661,6 +664,8 @@ window.onclick = function(event) {
        console.log(document.getElementById("myRange").value);
 
        function Heads() {
+         document.getElementById("FlipChoice").style.visibility = "hidden";
+         document.getElementById("slider").style.visibility = "hidden";
          localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
          var Random = Math.floor(Math.random() * 10) + 1;
          console.log("Random: " + random);
@@ -681,6 +686,8 @@ window.onclick = function(event) {
 
        }
        function Tails() {
+         document.getElementById("FlipChoice").style.visibility = "hidden";
+         document.getElementById("slider").style.visibility = "hidden";
          localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
          var Random = Math.floor(Math.random() * 10) + 1;
          setTimeout(function(){
