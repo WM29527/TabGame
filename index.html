@@ -591,10 +591,7 @@ div.absolute {
        var popup = document.getElementById('modal5');
        function TextBox(headerText, bodyText) {
          created = false;
-if (created = true) {
-
-}
-else {
+if (created = false) {
   var para = document.createElement("Div");
   para.setAttribute("id", "id05");
   para.setAttribute("class", "modal");
@@ -628,6 +625,10 @@ else {
   document.getElementById("container").appendChild(button);
   created = true;
 }
+else {
+  header.innerHTML = headerText;
+  body.innerHTML = bodyText;
+}
 
        }
        window.onclick = function(event) {
@@ -640,7 +641,7 @@ else {
        var modal2 = document.getElementById('id03');
        var modal3 = document.getElementById('id04');
 
-
+TextBox('TestHeader2', 'TextBody2')
 window.onclick = function(event) {
     if (event.target == modal3) {
         modal.style.display = "none";
