@@ -421,7 +421,7 @@ div.absolute {
 </style>
 
 </head>
-<body>
+<body id="body">
 
 <div class="bg container">
   <div class="Casino">
@@ -432,7 +432,7 @@ div.absolute {
 
 
        <h1>TabGame</h1>
-
+       <p>Refresh to earn coins and xp</p>
        <p id="CoinValue"></p>
 
        <p id="CurXpValue"></p>
@@ -560,35 +560,76 @@ div.absolute {
          </form>
        </div>
        <div id="id04" class="modal">
-         <form class="modal-content animate" action="/action_page.php" method="post">
+         <form class="modal-content animate" method="post">
            <div class="imgcontainer">
            </div>
            <div class="container">
              <h1 style="text-align: center; color: Black;">Level Up</h1>
-             <h4 style="text-align: center; color: Black;"></h4>
+             <h4 style="text-align: center; color: Black;">+$<span id="LevelText"><span></h4>
+
+
              <button type="button" onclick="document.getElementById('id04').style.display='none'; location.reload()" class="cancelbtn">Close</button>
            </div>
          </form>
        </div>
+       <div id="myDIV">
+       A DIV element
+       </div>
+
+       <button onclick="TextBox('TestHeader','TestBody')">Try it</button>
+       <script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
        <script>
-function PopupBox() {
-var popup = document.getElementById('CustomId');
-var header = '';
-var text = '';
-var PopupBody = document.createElement("DIV");
-PopupBody.innerHTML = document.createElement("DIV");
-}
+
+       if (window.location.href != 'https://wm29527.github.io/TabGame/') {
+         window.location.href = 'https://wm29527.github.io/TabGame/';
+       }
+       var modal5 = document.getElementById('id05');
+       var popup = document.getElementById('modal5');
+       function TextBox(headerText, bodyText) {
+
+         var para = document.createElement("Div");
+         para.setAttribute("id", "id05");
+         para.setAttribute("class", "modal");
+         para.setAttribute("style","display: block;")
+         var fourm = document.createElement("FORM");
+         fourm.setAttribute("class", "modal-content animate");
+         fourm.setAttribute("id","fourmId")
+         fourm.setAttribute("method","post");
+         var imgcontainer = document.createElement("Div");
+         imgcontainer.setAttribute("class","imgcontainer");
+         var container = document.createElement("Div");
+         container.setAttribute("class","container");
+         container.setAttribute("id","container")
+         var header = document.createElement("H1");
+         var body = document.createElement("H4");
+         header.setAttribute("style","text-align: center; color: Black;")
+         body.setAttribute("style","text-align: center; color: Black;")
+         header.innerHTML = headerText;
+         body.innerHTML = bodyText;
+         var button = document.createElement("Button");
+         button.setAttribute("type","button");
+         button.setAttribute("onclick","document.getElementById('id05').style.display='none'; location.reload()");
+         button.setAttribute("class","cancelbtn");
+         button.innerHTML = 'Close';
+         document.getElementById("body").appendChild(para);
+         document.getElementById("id05").appendChild(fourm);
+         document.getElementById("fourmId").appendChild(imgcontainer);
+         document.getElementById("fourmId").appendChild(container);
+         document.getElementById("container").appendChild(header);
+         document.getElementById("container").appendChild(body);
+         document.getElementById("container").appendChild(button);
+       }
+       window.onclick = function(event) {
+           if (event.target == modal5) {
+               modal5.style.display = "none";
+               location.reload()
+           }
+       }
        var modal2 = document.getElementById('id02');
        var modal2 = document.getElementById('id03');
        var modal3 = document.getElementById('id04');
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == CustomId) {
-        modal.style.display = "none";
-        location.reload()
-    }
-}
+
 window.onclick = function(event) {
     if (event.target == modal3) {
         modal.style.display = "none";
@@ -632,10 +673,10 @@ window.onclick = function(event) {
 
        }
        let random = {};
-       if (localStorage.getItem('Coin') > 999999) {
-         localStorage.setItem('Coin', 0)
+       /*if (localStorage.getItem('Coin') > 999999) {
+         localStorage.setItem('Coin', 1000)
 
-       }
+       }*/
 
        function flipCoin() {
          coin.setAttribute('class', '');
@@ -726,7 +767,6 @@ window.onclick = function(event) {
        }
 
 
-//<script data-ad-client="ca-pub-7898535565021564" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 
 move()
   //var CurCoin = localStorage.getItem("Coin")
@@ -771,7 +811,9 @@ move()
       localStorage.setItem("Level",parseInt(localStorage.getItem("Level")) + 1)
       localStorage.setItem("CurXp",parseInt(localStorage.getItem("CurXp")) - parseInt(localStorage.getItem("MaxXp")))
       document.getElementById('id04').style.display='block';
+      localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(localStorage.getItem("Level")))
     }
+    document.getElementById("LevelText").innerHTML = parseInt(localStorage.getItem("Level"));
     function Button(Cost) {
 
         if (CurCoin >= Cost) {
