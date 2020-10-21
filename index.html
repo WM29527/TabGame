@@ -448,22 +448,11 @@ div.absolute {
   <div class="Store">
     <img  src="StoreIcon.png" onclick="openShop()" width="70" height="70" />
   </div>
-
-
-
-
-       <h1>TabGame</h1>
+      <h1>TabGame</h1>
        <p>Refresh to earn coins and xp</p>
        <p id="CoinValue"></p>
-
        <p id="CurXpValue"></p>
-
-
-
-
-
        <div id="myProgress" class="absolute">
-
        <div id="myBar">
          <p id="p1"></p>
          <p id="Level"></p>
@@ -479,19 +468,13 @@ div.absolute {
           <div class="tooltip"> <img  src="CoinFlip.png" alt="" width="50px" height="50px" onclick="document.getElementById('id01').style.display='block'">
             <span class="tooltiptext">Coin Toss allows you to double your money in an instant</span>
           </div>
-
-
-
-
-
-
-           <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+           <button type="button" class="btn cancel" onclick="closeForm">Close</button>
          </form>
 
        </div>
        <div class="shop-popup" id="myShop">
          <form action="/action_page.php" class="form-container">
-          <div class="tooltip"> <img  src="BackgroundIcon.png" alt="" width="50px" height="50px" onclick="">
+          <div class="tooltip"> <img  src="BackgroundIcon.png" alt="" width="50px" height="50px" onclick="document.getElementById('id05').style.display='block'">
             <span class="tooltiptext">Customize your background</span>
           </div>
 
@@ -504,10 +487,6 @@ div.absolute {
          </form>
 
        </div>
-
-
-
-
        <div id="id01" class="modal">
 
          <div class="modal-content animate"  method="post">
@@ -515,14 +494,14 @@ div.absolute {
              <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
              <div class='container'>
-  <div id="coin" class=''>
-    <div id="heads" class="heads"></div>
-    <div id="tails" class="tails"></div>
-  </div>
+              <div id="coin" class=''>
+                <div id="heads" class="heads"></div>
+                <div id="tails" class="tails"></div>
+              </div>
 
 
 
-</div>
+            </div>
            </div>
 
            <div class="container">
@@ -534,12 +513,12 @@ div.absolute {
              </div>
 
 
-<div class="slidecontainer" >
-  <div id='slider'>
-    <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
-  </div>
-  <p style="color: Black">Value: <span id="Bet"></span></p>
-</div>
+            <div class="slidecontainer" >
+              <div id='slider'>
+                <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
+              </div>
+              <p style="color: Black">Value: <span id="Bet"></span></p>
+            </div>
 
 
            </div>
@@ -551,8 +530,6 @@ div.absolute {
          </div>
 
        </div>
-
-
        <div id="id02" class="modal">
 
          <form class="modal-content animate" action="/action_page.php" method="post">
@@ -573,7 +550,6 @@ div.absolute {
 
          </form>
        </div>
-
        <div id="id03" class="modal">
 
          <form class="modal-content animate" action="/action_page.php" method="post">
@@ -607,14 +583,27 @@ div.absolute {
            </div>
          </form>
        </div>
+       <div id="id05" class="modal">
+         <form class="modal-content animate" method="post">
+           <div class="imgcontainer">
+           </div>
+           <div class="container">
+             <h1 style="text-align: center; color: Black;">Level Up</h1>
+             <h4 style="text-align: center; color: Black;">+$<span id="LevelText"><span></h4>
+
+
+             <button type="button" onclick="document.getElementById('id05').style.display='none'; location.reload()" class="cancelbtn">Close</button>
+           </div>
+         </form>
+       </div>
 
 
 
        <script>
        console.log(window.location.href);
-       if (window.location.href != 'https://wm29527.github.io/TabGame/' && window.location.href != 'file:///C:/Users/29527/OneDrive%20-%20myChurchie.%20(in%20the%20Cloud)/Documents/GitHub/TabGame.github.io/index.html') {
+       if (window.location.href != 'https://wm29527.github.io/TabGame/' || window.location.href != 'file:///C:/Users/29527/OneDrive%20-%20myChurchie.%20(in%20the%20Cloud)/Documents/GitHub/TabGame.github.io/index.html') {
          console.log('Not on correct server');
-         //window.location.href = 'https://wm29527.github.io/TabGame/';
+         window.location.href = 'https://wm29527.github.io/TabGame/';
          location.replace("https://wm29527.github.io/TabGame/")
        }
 
@@ -629,16 +618,11 @@ div.absolute {
 
 
        var modal2 = document.getElementById('id02');
-       var modal2 = document.getElementById('id03');
-       var modal3 = document.getElementById('id04');
+       var modal3 = document.getElementById('id03');
+       var modal4 = document.getElementById('id04');
+       var modal5 = document.getElementById('id05');
 
 
-window.onclick = function(event) {
-    if (event.target == modal3) {
-        modal.style.display = "none";
-        location.reload()
-    }
-}
 window.onclick = function(event) {
     if (event.target == modal2) {
         modal.style.display = "none";
@@ -651,6 +635,19 @@ window.onclick = function(event) {
         location.reload()
     }
 }
+window.onclick = function(event) {
+    if (event.target == modal4) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
+window.onclick = function(event) {
+    if (event.target == modal5) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
+
        const coin = document.querySelector('#coin');
        const button = document.querySelector('#flip');
        const status = document.querySelector('#status');
