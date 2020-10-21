@@ -10,7 +10,7 @@
 
   .bg {
     /* The image used */
-    /*background-image: url("Background.jpg");
+    background-image: url("SunsetHike.jpg");
     /* Full height */
     height: 100%;
     width: auto;
@@ -18,7 +18,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #f39c12
+
   }
   .centered {
     position: absolute;
@@ -462,17 +462,7 @@ div.absolute {
   transition: .4s;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+
 
 input:checked + .slider {
   background-color: #2196F3;
@@ -609,6 +599,13 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 }
+.skills {
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+}
+
 </style>
 
 </head>
@@ -625,10 +622,10 @@ img {vertical-align: middle;}
        <p>Refresh to earn coins and xp</p>
        <p id="CoinValue"></p>
        <p id="CurXpValue"></p>
-       <div id="myProgress" class="absolute">
-       <div id="myBar">
-         <p id="p1"></p>
-         <p id="Level"></p>
+       <div id="myProgress" class="absolute" style="width: 80%; background-color: #ddd;" >
+       <div id="myBar" class="skills" style="overflow:hidden; word-wrap: break-word">
+         <p id="p1" style="position: relative; bottom: 20px;"></p>
+         <p id="Level" style="position: absolute; bottom: 20px;"></p>
        </div>
 
 
@@ -770,19 +767,20 @@ img {vertical-align: middle;}
 <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
   <img src="SunsetHike.jpg" style="width:100%;">
-  <div class="text">Caption Text</div>
+
+  <button type="button" name="button">Selected</button>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">2 / 3</div>
-  <img src="img_snow_wide.jpg" style="width:100%">
-  <div class="text">Caption Two</div>
+  <img src="minimalist-desktop-16.jpg" style="width:100%">
+  <button type="button" name="button">Purchase($1500)</button>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">3 / 3</div>
-  <img src="img_mountains_wide.jpg" style="width:100%">
-  <div class="text">Caption Three</div>
+  <img src="minimalist-desktop-24.jpg" style="width:100%">
+  <button type="button" name="button">Purchase($3000)</button>
 </div>
 
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
