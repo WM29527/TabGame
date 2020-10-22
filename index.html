@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <link rel="stylesheet" href="main.css" type="text/css" />
+          <script type="text/javascript" src="../../Winwheel.js"></script>
+          <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 <style>
   body, html {
     height: 100%;
@@ -606,9 +608,11 @@ img {vertical-align: middle;}
   color: white;
 }
 
+
 </style>
 
 </head>
+<script src='Winwheel.js'></script>
 <body id="body">
 
 <div class="bg container" id="Background">
@@ -640,8 +644,7 @@ img {vertical-align: middle;}
           </div>
            <button type="button" class="btn cancel" onclick="closeForm">Close</button>
          </form>
-
-       </div>
+      </div>
        <div class="shop-popup" id="myShop">
          <form action="/action_page.php" class="form-container">
           <div class="tooltip"> <img  src="BackgroundIcon.png" alt="" width="50px" height="50px" onclick="document.getElementById('id05').style.display='block'; document.getElementById('myShop').style.display='none'; ">
@@ -816,11 +819,12 @@ img {vertical-align: middle;}
              <button type="button" onclick="location.reload();" class="cancelbtn">Close</button>
            </div>
          </form>
-       </div>
-
-
-       <script>
-
+      </div>
+  <script type="text/javascript">
+if(localStorage.getItem("Level") > 49)
+  alert("Congrats for reaching level 50 josh");
+console.log();
+console.log(result);
 if (localStorage.getItem("Background2") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
   document.getElementById("PurchaseBg2").innerHTML = 'Selected';
