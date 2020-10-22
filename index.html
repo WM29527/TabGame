@@ -805,6 +805,13 @@ img {vertical-align: middle;}
 
 
        <script>
+       if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null || localStorage.getItem("Coin") == NaN) {
+         localStorage.setItem("Level", 0)
+         localStorage.setItem("CurXp", 0)
+         localStorage.setItem("MaxXp", parseInt(localStorage.getItem("Level")) + 15)
+         localStorage.setItem("Coin", 0)
+
+       }
        var slideIndex = 1;
 showSlides(slideIndex);
 
