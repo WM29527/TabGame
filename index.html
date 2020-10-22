@@ -875,6 +875,9 @@ function Background1() {
          if (localStorage.getItem("PurchasedBg2") == 'true') {
            localStorage.setItem("Background2",true);
            localStorage.setItem("Background1",false);
+           document.getElementById("PurchaseBg2").innerHTML = 'Selected';
+           document.getElementById("PurchaseBg1").innerHTML = 'Select';
+           if (localStorage.getItem("Background3") == 'true') document.getElementById("PurchaseBg3").innerHTML = 'Select';
          }
        }
        function Background3() {
@@ -895,6 +898,10 @@ function Background1() {
            localStorage.setItem("Background3",true);
            localStorage.setItem("Background2",false);
            localStorage.setItem("Background1",false);
+           document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-24.jpg")';
+           document.getElementById("PurchaseBg3").innerHTML = 'Selected';
+           if (localStorage.getItem("Background2") == 'true') document.getElementById("PurchaseBg2").innerHTML = 'Select';
+           document.getElementById("PurchaseBg1").innerHTML = 'Select';
          }
        }
 
