@@ -819,10 +819,10 @@ img {vertical-align: middle;}
          </form>
       </div>
   <script type="text/javascript">
-if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("my-god-u-have-no-life.jpg")';
+//if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("my-god-u-have-no-life.jpg")';
 console.log();
 
-if (localStorage.getItem("Background2") == 'true' && localStorage.getItem("Level") < 99) {
+if (localStorage.getItem("Background2") == 'true'  {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
   document.getElementById("PurchaseBg2").innerHTML = 'Selected';
   document.getElementById("PurchaseBg1").innerHTML = 'Select';
@@ -830,7 +830,7 @@ if (localStorage.getItem("Background2") == 'true' && localStorage.getItem("Level
   localStorage.setItem("Background1",false);
   localStorage.setItem("Background3",false);
 }
-if (localStorage.getItem("Background1") == 'true'&& localStorage.getItem("Level") < 99) {
+if (localStorage.getItem("Background1") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("SunsetHike.jpg")';
   document.getElementById("PurchaseBg1").innerHTML = 'Selected';
   if (localStorage.getItem("PurchasedBg2") == 'true')document.getElementById("PurchaseBg2").innerHTML = 'Select';
@@ -838,7 +838,7 @@ if (localStorage.getItem("Background1") == 'true'&& localStorage.getItem("Level"
   localStorage.setItem("Background2",false);
   localStorage.setItem("Background3",false);
 }
-if (localStorage.getItem("Background3") == 'true'&& localStorage.getItem("Level") < 99) {
+if (localStorage.getItem("Background3") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-24.jpg")';
   document.getElementById("PurchaseBg3").innerHTML = 'Selected';
   if (localStorage.getItem("PurchasedBg2") == 'true') document.getElementById("PurchaseBg2").innerHTML = 'Select';
