@@ -637,10 +637,13 @@ img {vertical-align: middle;}
 
        <div class="form-popup" id="myForm">
          <form action="/action_page.php" class="form-container">
-          <div class="tooltip"> <img  src="CoinFlip.png" alt="" width="50px" height="50px" onclick="document.getElementById('id01').style.display='block'">
+          <div class="tooltip"> <img  src="CoinFlip.png" alt="" width="50px" height="50px" onclick="document.getElementById('id01').style.display='block';document.getElementById('myForm').style.display='none';">
             <span class="tooltiptext">Coin Toss allows you to double your money in an instant</span>
           </div>
-           <button type="button" class="btn cancel" onclick="closeForm">Close</button>
+          <div class="tooltip"> <img  src="RocketRun.png" alt="" width="50px" height="50px" onclick="document.getElementById('id07').style.display='block';document.getElementById('myForm').style.display='none';">
+            <span class="tooltiptext">Rocket Run  Don't Blowup</span>
+          </div>
+           <button type="button" class="btn cancel" onclick="document.getElementById('myForm').style.display='none'">Close</button>
          </form>
       </div>
        <div class="shop-popup" id="myShop">
@@ -698,7 +701,7 @@ img {vertical-align: middle;}
            </div>
 
            <div class="container" style="background-color:#f1f1f1">
-             <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Close</button>
+             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Close</button>
 
            </div>
          </div>
@@ -817,10 +820,57 @@ img {vertical-align: middle;}
              <button type="button" onclick="location.reload();" class="cancelbtn">Close</button>
            </div>
          </form>
-      </div>
-  <script type="text/javascript">
+       </div>
+       <div id="id07" class="modal">
+
+         <div class="modal-content animate"  method="post">
+           <div class="imgcontainer">
+             <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+             <div class='container'>
+               <h1 style="color:Black" id="mult">1.0x</h1>
+              <img src="rocketFlying.png" alt="" id="RocketRun" width="30%" height="30%">
+
+
+
+            </div>
+           </div>
+
+           <div class="container">
+             <div class="slidecontainer" >
+               <div id='slider'>
+                 <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
+               </div>
+               <p style="color: Black">Value: <span id="Bet"></span></p>
+             </div>
+
+             <button onclick="Launch()">Launch</button>
+
+
+
+
+
+
+
+
+           </div>
+
+           <div class="container" style="background-color:#f1f1f1">
+             <button type="button" onclick="document.getElementById('id07').style.display='none';" class="cancelbtn">Close</button>
+
+           </div>
+         </div>
+
+       </div>
+          <script type="text/javascript">
 //if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("my-god-u-have-no-life.jpg")';
-console.log();
+function wait(ms)
+{
+    var d = new Date();
+    var d2 = null;
+    do { d2 = new Date(); }
+    while(d2-d < ms);
+}
 
 if (localStorage.getItem("Background2") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
@@ -907,6 +957,22 @@ function Background1() {
          }
        }
 
+function Launch() {
+         var img = document.getElementById("RocketRun");
+         img.src="rocketFlying.gif";
+         var x = Math.floor((Math.random() * 20) + 1);
+
+         var timeleft = x;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+  }
+  document.getElementById("mult").innerHTML = 10 - timeleft;
+  timeleft -= 1;
+}, 1000);
+         }
+       }
+
 // if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fmemegenerator.net%2Finstance%2F19683013%2Fserious-fish-spongebob-my-god-u-have-no-life&psig=AOvVaw1L_dSekYRa2CAkL0tP4QPH&ust=1603495674386000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCavI-tyewCFQAAAAAdAAAAABAD");'
        var slideIndex = 1;
 showSlides(slideIndex);
@@ -935,11 +1001,11 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
        console.log(window.location.href);
-       if (window.location.href != 'https://wm29527.github.io/TabGame/' && window.location.href != 'file:///C:/Users/29527/OneDrive%20-%20myChurchie.%20(in%20the%20Cloud)/Documents/GitHub/TabGame.github.io/index.html') {
+/*     if (window.location.href != 'https://wm29527.github.io/TabGame/' && window.location.href != 'file:///C:/Users/29527/OneDrive%20-%20myChurchie.%20(in%20the%20Cloud)/Documents/GitHub/TabGame.github.io/index.html') {
          console.log('Not on correct server');
          window.location.href = 'https://wm29527.github.io/TabGame/';
          location.replace("https://wm29527.github.io/TabGame/")
-       }
+       }*/
 
 
 
@@ -953,6 +1019,8 @@ function showSlides(n) {
        var modal3 = document.getElementById('id03');
        var modal4 = document.getElementById('id04');
        var modal5 = document.getElementById('id05');
+       var modal6 = document.getElementById('id06');
+       var modal7 = document.getElementById('id07');
 
 
 window.onclick = function(event) {
@@ -975,6 +1043,18 @@ window.onclick = function(event) {
 }
 window.onclick = function(event) {
     if (event.target == modal5) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
+window.onclick = function(event) {
+    if (event.target == modal6) {
+        modal.style.display = "none";
+        location.reload()
+    }
+}
+window.onclick = function(event) {
+    if (event.target == modal7) {
         modal.style.display = "none";
         location.reload()
     }
