@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <script type="text/javascript">
+      window._mNHandle = window._mNHandle || {};
+      window._mNHandle.queue = window._mNHandle.queue || [];
+      medianet_versionId = "3121199";
+  </script>
+  <script src="https://contextual.media.net/dmedianet.js?cid=8CUV0NGMY" async="async"></script>
 <style>
   body, html {
     height: 100%;
@@ -612,7 +617,16 @@ img {vertical-align: middle;}
 </head>
 
 <body id="body">
-
+  <div id="432074762">
+      <script type="text/javascript">
+          try {
+              window._mNHandle.queue.push(function (){
+                  window._mNDetails.loadTag("432074762", "300x250", "432074762");
+              });
+          }
+          catch (error) {}
+      </script>
+  </div>
 <div class="bg container" id="Background">
   <div class="Casino">
     <img  src="Casino.png" onclick="openForm()" width="70" height="70" />
@@ -973,7 +987,7 @@ function Launch() {
 
   if (document.getElementById("Launch").innerHTML == "Launch") {
     document.getElementById("Launch").innerHTML = "Bail out";
-
+    var escape = false;
      var rocket = document.getElementById("RocketRun");
      rocket.src="rocketFlying.gif";
      var x = Math.floor((Math.random() * 20) + 1);
@@ -983,9 +997,12 @@ function Launch() {
      console.log(x);
      var flying = true;
 var downloadTimer = setInterval(function(){
+  if (escape == false) {
+
+
 document.getElementById("mult").innerHTML = timeleft.toFixed(2);
 timeleft += 0.01;
-if(timeleft >= x){
+if(timeleft >= x ){
   clearInterval(downloadTimer);
   console.log("Boom");
   document.getElementById("mult").innerHTML = "Exploded";
@@ -993,7 +1010,7 @@ if(timeleft >= x){
     explosion.style.visibility = 'visible';
 
 }
-
+}
 
 
 var t = timeleft.toFixed(2);
@@ -1002,9 +1019,10 @@ window.value = t;
 
 }, 10);
   }
-  
+
   if (document.getElementById("Launch").innerHTML == "Bail out") {
     console.log('escape');
+     //escape = true;
   }
 var y = parseInt(x) - 1;
 window.length = y;
