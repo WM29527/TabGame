@@ -830,6 +830,7 @@ img {vertical-align: middle;}
              <div class='container'>
                <h1 style="color:Black" id="mult">1.0x</h1>
               <img src="rocketFlying.png" alt="" id="RocketRun" width="30%" height="30%">
+              <img src="Explosion.gif" alt="" style="position: absolute; top: 40%; visibility: hidden;" width="30%" height="30%" id="explosion" >
 
 
 
@@ -838,13 +839,13 @@ img {vertical-align: middle;}
 
            <div class="container">
              <div class="slidecontainer" >
-               <div id='slider'>
-                 <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
+               <div id='sliderRocket'>
+                 <input type="range" min="1" max="10" value="1" class="slider" id="myRangeRocket">
                </div>
-               <p style="color: Black">Value: <span id="Bet"></span></p>
+               <p style="color: Black">Value: <span id="BetRocket"></span></p>
              </div>
 
-             <button onclick="Launch()">Launch</button>
+             <button onclick="Launch()" id="Launch">Launch</button>
 
 
 
@@ -956,22 +957,67 @@ function Background1() {
            document.getElementById("PurchaseBg1").innerHTML = 'Select';
          }
        }
+       var sliderRocket = document.getElementById("myRangeRocket");
+
+       var outputRocket = document.getElementById("BetRocket");
+
+       outputRocket.innerHTML = sliderRocket.value;
+       var x = document.getElementById("myRangeRocket").max = localStorage.getItem("Coin");
+       sliderRocket.oninput = function() {
+         outputRocket.innerHTML = this.value;
+
+       }
+       console.log(document.getElementById("myRange").value);
 
 function Launch() {
-         var img = document.getElementById("RocketRun");
-         img.src="rocketFlying.gif";
-         var x = Math.floor((Math.random() * 20) + 1);
 
-         var timeleft = x;
+  if (document.getElementById("Launch").innerHTML == "Launch") {
+    document.getElementById("Launch").innerHTML = "Bail out";
+
+     var rocket = document.getElementById("RocketRun");
+     rocket.src="rocketFlying.gif";
+     var x = Math.floor((Math.random() * 20) + 1);
+
+     var timeleft = 0;
+     var value = 0;
+     console.log(x);
+     var flying = true;
 var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
+document.getElementById("mult").innerHTML = timeleft.toFixed(2);
+timeleft += 0.01;
+if(timeleft >= x){
+  clearInterval(downloadTimer);
+  console.log("Boom");
+  document.getElementById("mult").innerHTML = "Exploded";
+  var explosion = document.getElementById('explosion');
+    explosion.style.visibility = 'visible';
+
+}
+
+
+
+var t = timeleft.toFixed(2);
+
+window.value = t;
+
+}, 10);
   }
-  document.getElementById("mult").innerHTML = 10 - timeleft;
-  timeleft -= 1;
-}, 1000);
-         }
-       }
+  
+  if (document.getElementById("Launch").innerHTML == "Bail out") {
+    console.log('escape');
+  }
+var y = parseInt(x) - 1;
+window.length = y;
+}
+
+  Time = window.value;
+  console.log(Time);
+  WaitTime = window.length;
+  console.log(WaitTime);
+  if(Time >= length ){
+
+           }
+
 
 // if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fmemegenerator.net%2Finstance%2F19683013%2Fserious-fish-spongebob-my-god-u-have-no-life&psig=AOvVaw1L_dSekYRa2CAkL0tP4QPH&ust=1603495674386000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCavI-tyewCFQAAAAAdAAAAABAD");'
        var slideIndex = 1;
