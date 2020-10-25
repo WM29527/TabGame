@@ -35,6 +35,7 @@
     position: relative;
     text-align: center;
     color: white;
+
   }
   #a {
     position:
@@ -721,7 +722,7 @@ img {vertical-align: middle;}
          </div>
 
        </div>
-       <div id="id02" class="modal">
+       <div id="id02" class="modal" style="z-index: 10;">
 
          <form class="modal-content animate" action="/action_page.php" method="post">
            <div class="imgcontainer">
@@ -729,7 +730,7 @@ img {vertical-align: middle;}
 
            </div>
 
-           <div class="container">
+           <div class="container" >
              <h1 style="text-align: center; color: Black;">Profits</h1>
              <h4 style="text-align: center; color: Black;">+ $<span id="demo"></span></h4>
 
@@ -741,7 +742,7 @@ img {vertical-align: middle;}
 
          </form>
        </div>
-       <div id="id03" class="modal">
+       <div id="id03" class="modal" style="z-index: 10">
 
          <form class="modal-content animate" action="/action_page.php" method="post">
            <div class="imgcontainer">
@@ -761,7 +762,7 @@ img {vertical-align: middle;}
 
          </form>
        </div>
-       <div id="id04" class="modal">
+       <div id="id04" class="modal" style="z-index: 10">
          <form class="modal-content animate" method="post">
            <div class="imgcontainer">
            </div>
@@ -991,13 +992,14 @@ function Launch() {
      var rocket = document.getElementById("RocketRun");
      rocket.src="rocketFlying.gif";
      var x = Math.floor((Math.random() * 20) + 1);
-
+     localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRangeRocket").value);
      var timeleft = 0;
      var value = 0;
      console.log(x);
      var flying = true;
+if (stop != true) {
 var downloadTimer = setInterval(function(){
-  if (escape == false) {
+console.log(stop);
 
 
 document.getElementById("mult").innerHTML = timeleft.toFixed(2);
@@ -1008,9 +1010,10 @@ if(timeleft >= x ){
   document.getElementById("mult").innerHTML = "Exploded";
   var explosion = document.getElementById('explosion');
     explosion.style.visibility = 'visible';
+    document.getElementById("Launch").style.visibility = "hidden";
 
 }
-}
+
 
 
 var t = timeleft.toFixed(2);
@@ -1019,10 +1022,21 @@ window.value = t;
 
 }, 10);
   }
+}
 
-  if (document.getElementById("Launch").innerHTML == "Bail out") {
+  if (document.getElementById("Launch").innerHTML == "Bail out" && window.value > 0.1 ) {
     console.log('escape');
+    var stop = true;
+    document.getElementById("Launch").innerHTML = "Launch"
+    console.log(stop);
+    document.getElementById("Launch").style.visibility = "hidden";
+    var outcome = parseInt(document.getElementById("myRange").value) * parseInt(window.value);
+    console.log("Outcome: " + outcome);
+    console.log("Range: " + document.getElementById("myRange").value);
+    document.getElementById("demo").innerHTML = parseInt(sliderRocket.value) * parseInt(window.value);
+    document.getElementById('id02').style.display='block';
      //escape = true;
+     localStorage.setItem("Coin",localStorage.getItem("Coin") + parseInt(document.getElementById("myRange").value) * parseInt(window.value));
   }
 var y = parseInt(x) - 1;
 window.length = y;
