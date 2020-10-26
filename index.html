@@ -860,7 +860,7 @@ img {vertical-align: middle;}
                <p style="color: Black">Value: <span id="BetRocket"></span></p>
              </div>
 
-             <button onclick="" id="Launch">Launch</button>
+             <button onclick="Launch()" id="Launch">Launch</button>
 
 
 
@@ -888,11 +888,13 @@ function wait(ms)
     while(d2-d < ms);
 }
 function cpcUpgrade() {
-  if (localStorage.getItem("Coin") > 500
+  if (localStorage.getItem("Coin") > 500)
+  {
   localStorage.setItem("Coin", parseInt(localStorage.getItem("Coin")) - 500);
   localStorage.setItem("cpc", 1.1)
-  }
 }
+}
+
 if (localStorage.getItem("Background2") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
   document.getElementById("PurchaseBg2").innerHTML = 'Selected';
@@ -996,31 +998,35 @@ function Launch() {
     var escape = false;
      var rocket = document.getElementById("RocketRun");
      rocket.src="rocketFlying.gif";
-     var x = Math.floor((Math.random() * 20) + 1);
-     localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRangeRocket").value);
+
+     var precision = 100; // 2 decimals
+     var x = Math.floor(Math.random() * (3 * precision - 1 * precision) + 1 * precision) / (1*precision);
+
      var timeleft = 0;
      var value = 0;
      console.log(x);
      var flying = true;
-if (stop != true) {
+if (window.stop != true) {
 var downloadTimer = setInterval(function(){
 console.log(stop);
 
 
 document.getElementById("mult").innerHTML = timeleft.toFixed(2);
 timeleft += 0.01;
-if(timeleft >= x ){
+if(timeleft >= x && window.stop != true){
+localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRangeRocket").value);
   clearInterval(downloadTimer);
   console.log("Boom");
   document.getElementById("mult").innerHTML = "Exploded";
   var explosion = document.getElementById('explosion');
     explosion.style.visibility = 'visible';
     document.getElementById("Launch").style.visibility = "hidden";
-
+    document.getElementById("demo2").innerHTML = parseInt(sliderRocket.value);
+    document.getElementById('id03').style.display='block';
 }
 
 
-
+console.log(timeleft);
 var t = timeleft.toFixed(2);
 
 window.value = t;
@@ -1031,17 +1037,26 @@ window.value = t;
 
   if (document.getElementById("Launch").innerHTML == "Bail out" && window.value > 0.1 ) {
     console.log('escape');
-    var stop = true;
+    window.stop = true;
+    if (window.value < 1){
+      document.getElementById("demo2").innerHTML = parseInt(sliderRocket.value) * parseInt(document.getElementById("myRangeRocket").value);
+      document.getElementById('id03').style.display='block';
+    }
     document.getElementById("Launch").innerHTML = "Launch"
     console.log(stop);
     document.getElementById("Launch").style.visibility = "hidden";
-    var outcome = parseInt(document.getElementById("myRange").value) * parseInt(window.value);
+    var outcome = parseInt(document.getElementById("myRangeRocket").value) * parseInt(window.value);
+    localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + outcome);
+    console.log(parseInt(document.getElementById("myRangeRocket").value));
+    console.log(parseInt(window.value));
     console.log("Outcome: " + outcome);
-    console.log("Range: " + document.getElementById("myRange").value);
-    document.getElementById("demo").innerHTML = parseInt(sliderRocket.value) * parseInt(window.value);
+    console.log("Range: " + document.getElementById("myRangeRocket").value);
+    document.getElementById("demo").innerHTML = outcome;
     document.getElementById('id02').style.display='block';
+    var win = true;
+    console.log(win);
      //escape = true;
-     localStorage.setItem("Coin",localStorage.getItem("Coin") + parseInt(document.getElementById("myRange").value) * parseInt(window.value));
+
   }
 var y = parseInt(x) - 1;
 window.length = y;
@@ -1350,7 +1365,7 @@ move()
         if (localStorage.getItem("Coin") < 0) {
           localStorage.setItem("Coin", 0)
         }
-        if localStorage.getItem("Manager") == true{
+        if (localStorage.getItem("Manager") == true){
           wait(100);
           location.reload();
         }
