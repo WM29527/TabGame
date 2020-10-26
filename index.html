@@ -887,7 +887,10 @@ function wait(ms)
     while(d2-d < ms);
 }
 function cpcUpgrade() {
-  localStorage.setItem("cpc", 1)
+  if (localStorage.getItem("Coin") > 500
+  localStorage.setItem("Coin", parseInt(localStorage.getItem("Coin")) - 500);
+  localStorage.setItem("cpc", 1.1)
+  }
 }
 if (localStorage.getItem("Background2") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
@@ -1251,7 +1254,7 @@ window.onclick = function(event) {
          document.getElementById("myShop").style.display = "none";
        }
 
-localStorage.setItem("cpc", 1)
+
 move()
   //var CurCoin = localStorage.getItem("Coin")
   if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null || localStorage.getItem("Coin") == NaN) {
@@ -1332,6 +1335,10 @@ move()
         }
         if (localStorage.getItem("Coin") < 0) {
           localStorage.setItem("Coin", 0)
+        }
+        if localStorage.getItem("Manager") == true{
+          wait(100);
+          location.reload();
         }
 
 </script>
