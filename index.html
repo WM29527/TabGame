@@ -830,7 +830,7 @@ img {vertical-align: middle;}
            <div class="container">
              <h1 style="text-align: center; color: Black;">Upgrades</h1>
              <h4 style="text-align: center; color: Black;">Coins per click 1.0<span></h4>
-               <button type="button" name="button">$500</button>
+               <button type="button" name="button" onclick="cpcUpgrade();">$500</button>
 
              <button type="button" onclick="location.reload();" class="cancelbtn">Close</button>
            </div>
@@ -887,7 +887,9 @@ function wait(ms)
     do { d2 = new Date(); }
     while(d2-d < ms);
 }
-
+function cpcUpgrade() {
+  localStorage.setItem("cpc", 1)
+}
 if (localStorage.getItem("Background2") == 'true') {
   document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
   document.getElementById("PurchaseBg2").innerHTML = 'Selected';
@@ -1263,7 +1265,7 @@ window.onclick = function(event) {
          document.getElementById("myShop").style.display = "none";
        }
 
-
+localStorage.setItem("cpc", 1)
 move()
   //var CurCoin = localStorage.getItem("Coin")
   if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null || localStorage.getItem("Coin") == NaN) {
@@ -1271,7 +1273,7 @@ move()
     localStorage.setItem("CurXp", 0)
     localStorage.setItem("MaxXp", parseInt(localStorage.getItem("Level")) + 15)
     localStorage.setItem("Coin", 0)
-
+    localStorage.setItem("cpc", 1)
 
   }
   console.log("Level: " +localStorage.getItem("Level"));
