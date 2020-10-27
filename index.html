@@ -632,7 +632,7 @@ img {vertical-align: middle;}
     <script type="text/javascript" src="https://uprimp.com/bnr.php?section=General&pub=442738&format=120x600&ga=g"></script>
 <noscript><a href="https://yllix.com/publishers/442738" target="_blank"><img src="//ylx-aff.advertica-cdn.com/pub/120x600.png" style="border:none;margin:0;padding:0;vertical-align:baseline;" alt="ylliX - Online Advertising Network" /></a></noscript>
   </div>
-  <p style="right: 4px">Hello</p>
+
 <div class="Casino">
     <img  src="Casino.png" onclick="openForm()" width="70" height="70" />
   </div>
@@ -1227,10 +1227,9 @@ window.onclick = function(event) {
          document.getElementById("slider").style.visibility = "hidden";
          localStorage.setItem("Coin",localStorage.getItem("Coin") - document.getElementById("myRange").value);
          var Random = Math.floor(Math.random() * 10) + 1;
-         console.log("Random: " + random);
 
          setTimeout(function(){
-           console.log("Hello");
+
            if (random < 0.5) {
              localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
              console.log("Heads");
@@ -1253,7 +1252,7 @@ window.onclick = function(event) {
            if (random > 0.5) {
              localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
              //location.reload()
-             console.log("Tails");
+             
              document.getElementById("demo").innerHTML = slider.value;
              document.getElementById('id02').style.display='block'
            }
@@ -1377,7 +1376,7 @@ move()
           wait(100);
           location.reload();
         }
-      
+
 </script>
 </body>
 </html>
