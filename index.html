@@ -606,7 +606,21 @@ img {vertical-align: middle;}
   padding-bottom: 10px;
   color: white;
 }
-
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
 
 </style>
 
@@ -808,6 +822,16 @@ img {vertical-align: middle;}
                       <img src="minimalist-desktop-24.jpg" style="width:100%">
                       <button type="button" name="button" onclick="Background3()" id="PurchaseBg3">Purchase($3000)</button>
                     </div>
+                    <div class="mySlides fade">
+                      <div class="numbertext">4 / 3</div>
+                      <img src="minimalist-desktop-28.jpg" style="width:100%; filter: blur(70px); -webkit-filter: blur(70px); " id="100img">
+                      <div class="bg-text" id="cover-text">
+                        <h2>Locked</h2>
+                        <h1 style="font-size:50px">Level 100</h1>
+                        <p>Reach Level 100 to unlock this background</p>
+                      </div>
+                        <button type="button" name="button" onclick="Background4()" id="PurchaseBg4">Locked</button>
+                    </div>
 
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -819,6 +843,7 @@ img {vertical-align: middle;}
                       <span class="dot" onclick="currentSlide(1)"></span>
                       <span class="dot" onclick="currentSlide(2)"></span>
                       <span class="dot" onclick="currentSlide(3)"></span>
+                      <span class="dot" onclick="currentSlide(4)"></span>
                     </div>
 
                </div>
@@ -884,6 +909,12 @@ img {vertical-align: middle;}
        </div>
           <script type="text/javascript">
 //if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("my-god-u-have-no-life.jpg")';
+
+if (localStorage.getItem("Level") >= 100) {
+  document.getElementById("100img").style.filter = "blur(" +0 + "px)";
+  document.getElementById("cover-text").style.visibility = 'hidden';
+  document.getElementById("PurchaseBg4").innerHTML = 'Select';
+}
 function wait(ms)
 {
     var d = new Date();
@@ -1252,7 +1283,7 @@ window.onclick = function(event) {
            if (random > 0.5) {
              localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(document.getElementById("myRange").value * 2));
              //location.reload()
-             
+
              document.getElementById("demo").innerHTML = slider.value;
              document.getElementById('id02').style.display='block'
            }
