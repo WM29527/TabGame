@@ -1053,7 +1053,8 @@ window.value = timeleft.toFixed(2);
     console.log("Outcome: " + outcome);
     console.log("Range: " + document.getElementById("myRangeRocket").value);
     if (window.value >= 1) {
-      document.getElementById("demo").innerHTML = outcome - document.getElementById("myRangeRocket").value;
+      var glizzy = outcome - document.getElementById("myRangeRocket").value
+      document.getElementById("demo").innerHTML = glizzy.toFixed(2);
       document.getElementById('id02').style.display='block';
     }
 
