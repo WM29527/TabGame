@@ -687,6 +687,9 @@ img {vertical-align: middle;}
           <div class="tooltip"> <img  src="UpgradeIcon.png" alt="" width="50px" height="50px" onclick="document.getElementById('id06').style.display='block'; document.getElementById('myShop').style.display='none'; ">
             <span class="tooltiptext">Find all your essential upgrades</span>
           </div>
+          <div class="tooltip"> <img  src="budget-management.png" alt="" width="50px" height="50px" onclick="document.getElementById('id08').style.display='block'; document.getElementById('myShop').style.display='none'; ">
+            <span class="tooltiptext">Autoclick till your hearts content</span>
+          </div>
 
 
 
@@ -954,6 +957,9 @@ if (localStorage.getItem("Background3") == 'true') {
   localStorage.setItem("Background2",false);
   localStorage.setItem("Background1",false);
 }
+if (localStorage.getItem("Background100",) == 'true') {
+  document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-24.jpg")';
+}
 function Background1() {
   if (localStorage.getItem("Background1") != 'true') {
     console.log('Changed background 1');
@@ -1014,6 +1020,14 @@ function Background1() {
            document.getElementById("PurchaseBg1").innerHTML = 'Select';
          }
        }
+       function Background4() {
+         if (localStorage.getItem("Level") >= 100) {
+           document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-28.jpg")';
+           document.getElementById("PurchaseBg4").innerHTML = 'Selected';
+           localStorage.setItem("Background100",true);
+         }
+
+       }
        var sliderRocket = document.getElementById("myRangeRocket");
 
        var outputRocket = document.getElementById("BetRocket");
@@ -1035,7 +1049,7 @@ function Launch() {
      rocket.src="rocketFlying.gif";
 
      var precision = 100; // 2 decimals
-     var x = Math.floor(Math.random() * (3 * precision - 1 * precision) + 1 * precision) / (1*precision);
+     var x = Math.floor(Math.random() * (2 * precision - 1 * precision) + 1 * precision) / (1*precision);
 
      var timeleft = 1;
      var value = 0;
