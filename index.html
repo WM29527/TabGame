@@ -917,7 +917,7 @@ img {vertical-align: middle;}
 function Manager() {
 
 }
-var windowObjRef = window.open('Manager.html');
+/*var windowObjRef = window.open('Manager.html');
 
 // Verification, alternative 1. You may encapsulate this in a method.
 if (windowObjRef.closed) {
@@ -932,7 +932,7 @@ if (windowObjRef.window) {
 else {
     console.log("Closed");
 }
-
+*/
 if (localStorage.getItem("Level") >= 100) {
   document.getElementById("100img").style.filter = "blur(" +0 + "px)";
   document.getElementById("cover-text").style.visibility = 'hidden';
