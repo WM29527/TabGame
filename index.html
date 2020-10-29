@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="propeller" content="60da8c7fda93ce6d6779b27608d9ab82">
 <style>
   body, html {
     height: 100%;
@@ -912,6 +912,26 @@ img {vertical-align: middle;}
        </div>
           <script type="text/javascript">
 //if(localStorage.getItem("Level") > 99) document.getElementById("Background").style.backgroundImage = 'url("my-god-u-have-no-life.jpg")';
+
+// Open the pop-up and save the reference.
+function Manager() {
+
+}
+var windowObjRef = window.open('Manager.html');
+
+// Verification, alternative 1. You may encapsulate this in a method.
+if (windowObjRef.closed) {
+    console.log("closed");
+else {
+    console.log("Open");
+}
+
+// Verification, alternative 2. You may encapsulate this in a method.
+if (windowObjRef.window) {
+    console.log("open");
+else {
+    console.log("Closed");
+}
 
 if (localStorage.getItem("Level") >= 100) {
   document.getElementById("100img").style.filter = "blur(" +0 + "px)";
