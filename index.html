@@ -657,11 +657,11 @@ img {vertical-align: middle;}
 </div>
 -->
 
-<div class="Casino">
+<div class="Casino" id="Casino">
     <img  src="Casino.png" onclick="openForm()" width="70" height="70" />
   </div>
   <div class="Store">
-    <img  src="StoreIcon.png" onclick="openShop()" width="70" height="70" />
+    <img  src="StoreIcon.png" onclick="openShop()" width="70" height="70" style="-webkit-filter: invert(100%); filter: invert(100%);" />
   </div>
       <h1>TabGame</h1>
        <p>Refresh to earn coins and xp</p>
@@ -1001,6 +1001,7 @@ function Background1() {
 
     localStorage.setItem("Background2",false);
     localStorage.setItem("Background3",false);
+    localStorage.setItem("Background100",false);
   }
 }
        function Background2() {
@@ -1012,6 +1013,7 @@ function Background1() {
            localStorage.setItem("Background3",false);
            localStorage.setItem("Background1",false);
            localStorage.setItem("Background3",false);
+           localStorage.setItem("Background100",false);
            document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-16.jpg")';
            document.getElementById("PurchaseBg2").innerHTML = 'Selected';
            document.getElementById("PurchaseBg1").innerHTML = 'Select';
@@ -1035,6 +1037,7 @@ function Background1() {
            localStorage.setItem("Background2",false);
            localStorage.setItem("Background1",false);
            localStorage.setItem("Background2",false);
+           localStorage.setItem("Background100",false);
            document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-24.jpg")';
            document.getElementById("PurchaseBg3").innerHTML = 'Selected';
            if (localStorage.getItem("Background2") == 'true') document.getElementById("PurchaseBg2").innerHTML = 'Select';
@@ -1044,6 +1047,7 @@ function Background1() {
            localStorage.setItem("Background3",true);
            localStorage.setItem("Background2",false);
            localStorage.setItem("Background1",false);
+           localStorage.setItem("Background100",false);
            document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-24.jpg")';
            document.getElementById("PurchaseBg3").innerHTML = 'Selected';
            if (localStorage.getItem("Background2") == 'true') document.getElementById("PurchaseBg2").innerHTML = 'Select';
@@ -1057,6 +1061,9 @@ function Background1() {
            localStorage.setItem("Background100",true);
          }
 
+       }
+       if (localStorage.getItem("Background100") == 'true'){
+         document.getElementById("Background").style.backgroundImage = 'url("minimalist-desktop-28.jpg")';
        }
        var sliderRocket = document.getElementById("myRangeRocket");
 
@@ -1455,7 +1462,17 @@ move()
           wait(100);
           location.reload();
         }
-
+        localStorage.openpages = Date.now();
+        var onLocalStorageEvent = function(e){
+          if(e.key == "openpages"){
+            // Emit that you're already available.
+            localStorage.page_available = Date.now();
+          }
+          if(e.key == "page_available"){
+            document.getElementById("Casino").style.visibility = "hidden";
+          }
+        };
+        window.addEventListener('storage', onLocalStorageEvent, false);
 </script>
 <script type="text/javascript">
 	atOptions = {
