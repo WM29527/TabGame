@@ -1322,6 +1322,7 @@ window.onclick = function(event) {
              console.log("Heads");
              document.getElementById("demo").innerHTML = slider.value;
              document.getElementById('id02').style.display='block';
+             localStorage.setItem("gamble", 'true');
            }
            else {
              document.getElementById("demo2").innerHTML = slider.value;
@@ -1376,8 +1377,19 @@ window.onclick = function(event) {
        function closeForm() {
          document.getElementById("myShop").style.display = "none";
        }
-
-
+function check() {
+  if (CurCoin != localStorage.getItem("Coin")) {
+    console.log('you cheated');
+    localStorage.setItem("Coin", CurCoin)
+  }
+}
+setInterval(check, 30);
+if (localStorage.getItem("gamble") != 'true') {
+  console.log('gamble not true');
+  if (localStorage.getItem("CurCoin") > parseInt(localStorage.getItem("CurCoin") + 1)) {
+    console.log('you cheated');
+  }
+}
 move()
   //var CurCoin = localStorage.getItem("Coin")
   if (localStorage.getItem("Level") == null || localStorage.getItem("CurXp") == null || localStorage.getItem("MaxXp") == null || localStorage.getItem("Coin") == NaN) {
@@ -1402,7 +1414,7 @@ move()
       var CurCoin = parseInt(localStorage.getItem("Coin")) + 1 ;
       localStorage.setItem("Coin", CurCoin);
       Coin = localStorage.getItem("Coin")
-      localStorage.getItem("Coin");
+      console.log(localStorage.getItem("Coin"));
       console.log(CurCoin);
       document.getElementById("CoinValue").innerHTML = CurCoin
 
