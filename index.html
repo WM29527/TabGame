@@ -1437,7 +1437,7 @@ move()
       localStorage.setItem("Level",parseInt(localStorage.getItem("Level")) + 1)
       localStorage.setItem("CurXp",parseInt(localStorage.getItem("CurXp")) - parseInt(localStorage.getItem("MaxXp")))
       document.getElementById('id04').style.display='block';
-	localStorage.setItem("gamble","false");
+	localStorage.setItem("gamble","true");
       localStorage.setItem("Coin",parseInt(localStorage.getItem("Coin")) + parseInt(localStorage.getItem("Level")))
     }
     document.getElementById("LevelText").innerHTML = parseInt(localStorage.getItem("Level"));
