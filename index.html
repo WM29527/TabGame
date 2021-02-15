@@ -1006,6 +1006,7 @@ function Background1() {
 }
        function Background2() {
          if (localStorage.getItem("Coin") > 1500 && localStorage.getItem("Background2") != 'true') {
+		 localStorage.setItem("gamble",true);
            localStorage.setItem("Coin", parseInt(localStorage.getItem("Coin")) - 1500);
            localStorage.setItem("Background2",true);
            localStorage.setItem("PurchasedBg2", true)
@@ -1031,6 +1032,7 @@ function Background1() {
        }
        function Background3() {
          if (localStorage.getItem("Coin") > 3000 && localStorage.getItem("Background3") != 'true') {
+		 localStorage.setItem("gamble",true);
            localStorage.setItem("Coin", parseInt(localStorage.getItem("Coin")) - 3000);
            localStorage.setItem("Background3",true);
            localStorage.setItem("PurchasedBg3", true)
